@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-native';
 import { GoogleSigninButton } from 'react-native-google-signin';
 import { GoogleSignin,statusCodes } from 'react-native-google-signin';
-import { useGetTransferQuery,useGetTransferbyUserIdQuery } from '../../api/apiSlice';
+import { useGetTransferQuery,useGetTransferbyUserIdQuery } from '../../app/api/apiSlice';
 
 const Login = () => {
   const signInWithGoogle = async () => {

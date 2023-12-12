@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,64 +16,27 @@ import {
   View,
 } from 'react-native';
 import {Provider} from 'react-redux';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-import { GoogleSignin } from 'react-native-google-signin';
 import Login from './src/screens/Login/Login';
-import { store } from './src/api/store';
+import { store } from './src/app/api/store';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './src/screens/Home/Home';
+import Routes from './src/app/Routes/Routes';
 
-GoogleSignin.configure({
-  webClientId: 'YOUR_WEB_CLIENT_ID', // replace with your web client ID
-  offlineAccess: true,
-});
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+  const Stack = createNativeStackNavigator();
   return (
     <Provider store={store}>
+      <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Routes" component={Routes} />
+        <Stack.Screen name="hom" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
-      <ScrollView>
-        <Login/>
-      </ScrollView>
+    
+        {/* <Login/> */}
+
     </Provider>
   );
 }
