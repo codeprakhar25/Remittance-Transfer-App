@@ -16,7 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import {Provider} from 'react-redux';
 import {
   Colors,
   DebugInstructions,
@@ -56,6 +56,7 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 import { GoogleSignin } from 'react-native-google-signin';
 import Login from './src/screens/Login/Login';
+import { store } from './src/api/store';
 
 GoogleSignin.configure({
   webClientId: 'YOUR_WEB_CLIENT_ID', // replace with your web client ID
@@ -69,11 +70,12 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <>
+    <Provider store={store}>
+
       <ScrollView>
         <Login/>
       </ScrollView>
-    </>
+    </Provider>
   );
 }
 
