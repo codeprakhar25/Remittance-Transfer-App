@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import { Button } from 'react-native';
 import { GoogleSigninButton } from 'react-native-google-signin';
 import { GoogleSignin,statusCodes } from 'react-native-google-signin';
 import { useGetTransferQuery,useGetTransferbyUserIdQuery } from '../../app/api/apiSlice';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Login = () => {
+const Login = ({navigation}) => {
+  const [userinfo,setUserInfo]=useState(null)
+  useEffect(() => {
+    checkStoredAuthToken();
+  }, []);
+
+  const checkStoredAuthToken = async () => {
+    try {
+      // const storedToken = await AsyncStorage.getItem('googleAuthToken');
+      const user = await GoogleSignin.getCurrentUser();
+      // if (storedToken) {
+      //   // Authentication token exists, no need to sign in again
+      //   console.log('Stored Authentication Token:', storedToken);
+
+        // Get user information based on the stored token
+        if (user) {
+          console.log('Stored User Information:', user);
+          setUserInfo(user);
+          navigation.navigate("Routes");
+        // }
+      }
+    } catch (error) {
+      console.error('Error checking stored authentication token:', error);
+    }
+  };
   const signInWithGoogle = async () => {
       GoogleSignin.configure({
         androidClientId:'1058979420267-ob6r5jjla17b5b802k4se7ds05aln4tt.apps.googleusercontent.com',
@@ -16,6 +41,7 @@ const Login = () => {
           await GoogleSignin.hasPlayServices();
           const userInfo = await GoogleSignin.signIn();
           console.log(userInfo);
+setUserInfo(userInfo);
 
         } catch (error) {
           console.error('Google Sign-In Error:', error);

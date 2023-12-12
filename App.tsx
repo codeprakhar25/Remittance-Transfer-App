@@ -29,6 +29,7 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Routes" component={Routes} />
         <Stack.Screen name="hom" component={Home} />
       </Stack.Navigator>
