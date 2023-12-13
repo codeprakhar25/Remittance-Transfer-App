@@ -7,6 +7,7 @@ const History = () => {
      <Text
     >History
     </Text> 
+    
     </View>
   )
 }

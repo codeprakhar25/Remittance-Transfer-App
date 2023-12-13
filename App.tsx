@@ -22,6 +22,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/Home/Home';
 import Routes from './src/app/Routes/Routes';
+import TransferForm from './src/screens/Home/TransferForm';
 
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -31,6 +32,7 @@ function App(): React.JSX.Element {
       <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Routes" component={Routes} />
+        <Stack.Screen name="transfer" component={TransferForm} />
         <Stack.Screen name="hom" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Button } from 'react-native';
+import { Button,Image,Text,View } from 'react-native';
 import { GoogleSigninButton } from 'react-native-google-signin';
 import { GoogleSignin,statusCodes } from 'react-native-google-signin';
 import { useGetTransferQuery,useGetTransferbyUserIdQuery } from '../../app/api/apiSlice';
@@ -42,19 +42,13 @@ const Login = ({navigation}) => {
           const userInfo = await GoogleSignin.signIn();
           console.log(userInfo);
 setUserInfo(userInfo);
+navigation.navigate("Routes");
 
         } catch (error) {
           console.error('Google Sign-In Error:', error);
         }
       };
-      const handlesignout = async () => {
-        try {
-          await GoogleSignin.revokeAccess();
-          await GoogleSignin.signOut();
-        } catch (error) {
-          console.error('Google Sign-Out Error:', error);
-        }
-      };
+  
      const id="116802752130870783622";
       const { data:transfers, error,isSuccess, isLoading } = useGetTransferbyUserIdQuery(id);
       if(isSuccess){
@@ -62,7 +56,17 @@ setUserInfo(userInfo);
 
       } 
   return (
-    <>
+    <View style={{backgroundColor:'#ffffff',alignItems:'center',height:'70%',marginTop:'28%',display:'flex',justifyContent:'center',}}>
+      <Image
+      style={{height:100,width:100}}
+      source={require('../../app/assets/Home.png')}
+      />
+    <Text style={{fontSize:24,fontFamily:'sans-serif',fontWeight:700,color:'black'}}>
+      Welcome to Remit
+    </Text>
+<Text style={{fontSize:19,fontFamily:'sans-serif',fontWeight:600}}>Link Your Google Account to start</Text>
+<Text style={{fontSize:17,fontFamily:'sans-serif',fontWeight:600}}>India's 1 App in this Category</Text>
+
        <GoogleSigninButton
     style={{ width: 192, height: 48 }}
     size={GoogleSigninButton.Size.Wide}
@@ -80,6 +84,7 @@ GoogleSignin.hasPlayServices().then((hasPlayService) => {
         if (hasPlayService) {
              GoogleSignin.signIn().then((userInfo) => {
                        console.log(JSON.stringify(userInfo))
+                       navigation.navigate("Routes");
              }).catch((e) => {
              console.log("ERROR IS: " + JSON.stringify(e));
              })
@@ -88,8 +93,7 @@ GoogleSignin.hasPlayServices().then((hasPlayService) => {
     console.log("ERROR IS: " + JSON.stringify(e));
 })
 }} />
-  <Button onPress={()=>{handlesignout}} title='Log out'/>
-    </>
+    </View>
   )
 }
 

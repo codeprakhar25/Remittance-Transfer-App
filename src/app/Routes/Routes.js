@@ -11,7 +11,7 @@ const Routes = () => {
   return (
     <Tab.Navigator>
     <Tab.Screen
-      name="Getting Started"
+      name="Home"
       component={Home}
       options={{
         tabBarIcon: ({color}) => (
