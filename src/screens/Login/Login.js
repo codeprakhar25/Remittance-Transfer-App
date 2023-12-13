@@ -3,7 +3,7 @@ import { Button,Image,Text,View } from 'react-native';
 import { GoogleSigninButton } from 'react-native-google-signin';
 import { GoogleSignin,statusCodes } from 'react-native-google-signin';
 import { useGetTransferQuery,useGetTransferbyUserIdQuery } from '../../app/api/apiSlice';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from '../../app/components/Header';
 
 const Login = ({navigation}) => {
   const [userinfo,setUserInfo]=useState(null)
@@ -13,13 +13,7 @@ const Login = ({navigation}) => {
 
   const checkStoredAuthToken = async () => {
     try {
-      // const storedToken = await AsyncStorage.getItem('googleAuthToken');
       const user = await GoogleSignin.getCurrentUser();
-      // if (storedToken) {
-      //   // Authentication token exists, no need to sign in again
-      //   console.log('Stored Authentication Token:', storedToken);
-
-        // Get user information based on the stored token
         if (user) {
           console.log('Stored User Information:', user);
           setUserInfo(user);
@@ -51,24 +45,25 @@ navigation.navigate("Routes");
 
      
   return (
-    <View style={{backgroundColor:'#ffffff',alignItems:'center',height:'70%',marginTop:'28%',display:'flex',justifyContent:'center',}}>
+    <>
+    <Header text='Login'/>
+    <View style={{backgroundColor:'#ffffff',alignItems:'center',height:'70%',marginTop:'20%',display:'flex',justifyContent:'center',}}>
       <Image
-      style={{height:100,width:100}}
-      source={require('../../app/assets/Home.png')}
+      style={{height:150,width:150,marginBottom:15}}
+      source={require('../../app/assets/logo.jpg')}
       />
-    <Text style={{fontSize:24,fontFamily:'sans-serif',fontWeight:700,color:'black'}}>
+    <Text style={{fontSize:24,fontFamily:'sans-serif',fontWeight:700,color:'black',marginBottom:20}}>
       Welcome to Remit
     </Text>
-<Text style={{fontSize:19,fontFamily:'sans-serif',fontWeight:600}}>Link Your Google Account to start</Text>
-<Text style={{fontSize:17,fontFamily:'sans-serif',fontWeight:600}}>India's 1 App in this Category</Text>
+<Text style={{fontSize:19,fontFamily:'sans-serif',fontWeight:600}}>Login with Your Google Account to start</Text>
 
        <GoogleSigninButton
-    style={{ width: 192, height: 48 }}
+    style={{ width: 192, height: 48,marginTop:15 }}
     size={GoogleSigninButton.Size.Wide}
     color={GoogleSigninButton.Color.Dark}
     onPress={signInWithGoogle}
   />
-<Button title={'Sign in with Google'} onPress={() =>  {
+{/* <Button title={'Sign in with Google'} onPress={() =>  {
     GoogleSignin.configure({
       androidClientId:'1058979420267-ob6r5jjla17b5b802k4se7ds05aln4tt.apps.googleusercontent.com',
   webClientId: '1058979420267-eghlnl66lrs29ti9sbjg4vhqivqsakog.apps.googleusercontent.com', 
@@ -87,8 +82,9 @@ GoogleSignin.hasPlayServices().then((hasPlayService) => {
 }).catch((e) => {
     console.log("ERROR IS: " + JSON.stringify(e));
 })
-}} />
+}} /> */}
     </View>
+    </>
   )
 }
 

@@ -1,10 +1,11 @@
 import React, { useEffect,useState } from 'react'
-import { View,Text,TouchableOpacity,TextInput, StyleSheet,Alert } from 'react-native'
+import { View,Text,TouchableOpacity,TextInput, StyleSheet,Alert,ScrollView, Image } from 'react-native'
 import {Picker} from '@react-native-picker/picker';
 import { countryData } from './countrydata';
 import { useAddTransferMutation } from '../../app/api/apiSlice';
+import Header from '../../app/components/Header';
 
-const TransferForm = ({route}) => {
+const TransferForm = ({route,navigation}) => {
   const {userId} = route.params;
   console.log(userId);
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -37,27 +38,44 @@ console.log(sentAmount)
 
 const [Transfer]=useAddTransferMutation();
 const handleClick= async()=>{
-try{
-const response= await Transfer({
-  sent_amount:sentAmount,
-  received_amount: receivingAmount,
-  to:personTo,
-  rate: rate,
-  user_id:userId,
-  completed:true,
-  
-})
-console.log(response);
-      Alert.alert("Transfer Successfull");
-      navigation.navigate('Home');
-}catch(error){
-  console.log(error)
-}
+  if(sentAmount && receivingAmount && personTo && userId){
+    try{
+    const response= await Transfer({
+      sent_amount:sentAmount,
+      received_amount: receivingAmount,
+      to:personTo,
+      rate: rate,
+      user_id:userId,
+      completed:true,
+    
+    })
+    console.log(response);
+          Alert.alert("Transfer Successfull");
+          navigation.navigate('History');
+    }catch(error){
+      console.log(error)
+    }
+  }else{
+    Alert.alert("Enter Correct Information")
+  }
 }
 
   return (
-    <View>
-    <Text>Add Details</Text>
+    <ScrollView>
+      <View>
+        <Header text='Transfer Money' />
+        <TouchableOpacity
+          onPress={() => {
+              navigation.navigate('Home');        
+          }}
+          style={{position: 'absolute'}}>
+          <Image
+            style={{position: 'absolute', top: 22, left: 12}}
+            source={require('../../app/assets/Back.png')}
+          />
+        </TouchableOpacity>
+      </View>
+    <Text style={{marginLeft:20,marginTop:15,fontSize:16,color:'black'}}>Add Details</Text>
     <TextInput
             onChangeText={text => {
               setPersonTo(text);
@@ -77,12 +95,12 @@ console.log(response);
               backgroundColor:"#FFFFFF"
             }}
             underlineColorAndroid="transparent"
-            placeholder={'Enter Person to send Money'}
+            placeholder={'Enter Persons Name to send Money'}
             placeholderTextColor="black"
             // placeholderFontSize="20"
             autoCapitalize="none"
           />
-<Text>Choose Your Country</Text>
+<Text style={{marginLeft:20,marginTop:15,fontSize:16,color:'black'}}>Choose Your Country</Text>
 <View
               style={{
                 width: '90%',
@@ -106,7 +124,7 @@ console.log(response);
         ))}
       </Picker>
       </View>
-<Text>Send Money to</Text>
+<Text style={{marginLeft:20,marginTop:15,fontSize:16,color:'black'}}>Send Money to</Text>
 <View
               style={{
                 width: '90%',
@@ -129,14 +147,14 @@ console.log(response);
         ))}
       </Picker>
       </View>
-<Text>Rate</Text>
+<Text style={{marginLeft:20,marginTop:15,fontSize:16,color:'black'}}>Rate</Text>
 {
   rate==0 ?
   <Text style={styles.inputprofdis}>Enter Country to know the rate</Text>
   :
 <Text style={styles.inputprofdis}>{rate}</Text>
 }
-<Text>Amount to Send in {selectedCountry}</Text>
+<Text style={{marginLeft:20,marginTop:15,fontSize:16,color:'black'}}>Amount to Send in {selectedCountry}</Text>
               <TextInput
               onChangeText={num => {
                 setSentAmount(num);
@@ -155,14 +173,14 @@ console.log(response);
   <Text style={styles.inputprofdis}>Amount to be Received</Text>
   :
   <>
-<Text>Amount to Receive in {transferCountry}</Text>
+<Text style={{marginLeft:20,marginTop:15,fontSize:16,color:'black'}}>Amount to Receive in {transferCountry}</Text>
 <Text style={styles.inputprofdis}>{receivingAmount}</Text>
   </>
 }
 <TouchableOpacity style={styles.signbutton} onPress={()=>{handleClick()}}>
-  <Text style={{color:"#ffffff"}}>Send the Amount </Text>
+  <Text style={{color:"#ffffff",fontSize:18,fontWeight:"600"}}>Send the Amount </Text>
 </TouchableOpacity>
-  </View>
+  </ScrollView>
   )
 }
 

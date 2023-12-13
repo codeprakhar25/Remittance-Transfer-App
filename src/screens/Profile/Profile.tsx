@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image,Button,TouchableOpacity,StyleSheet } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
+import Header from '../../app/components/Header';
 
 const Profile = ({navigation}) => {
   const [userinfo, setUserInfo] = useState(null);
@@ -45,6 +46,7 @@ const Profile = ({navigation}) => {
   };
   return (
     <View>
+      <Header text="Profile"/>
       {/* <Text>Profile</Text> */}
       {userinfo && (
         <View style={{width:'90%',backgroundColor:"#ffffff",alignItems:'center',margin:'5%',padding:'5%'}}>
@@ -61,7 +63,7 @@ const Profile = ({navigation}) => {
         </View>
       )}
 <TouchableOpacity style={styles.signbutton} onPress={()=>{handlesignout()}}>
-  <Text style={{color:"#ffffff"}}>Logout</Text>
+  <Text style={{color:"#ffffff",fontSize:18,fontWeight:"600"}}>Logout</Text>
 </TouchableOpacity>
     </View>
   );

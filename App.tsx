@@ -30,15 +30,11 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Routes" component={Routes} />
-        <Stack.Screen name="transfer" component={TransferForm} />
-        {/* <Stack.Screen name="hom" component={Home} /> */}
+      <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+        <Stack.Screen name="Routes" component={Routes} options={{headerShown: false}} />
+        <Stack.Screen name="transfer" component={TransferForm} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
-
-    
-        {/* <Login/> */}
 
     </Provider>
   );

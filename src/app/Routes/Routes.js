@@ -59,7 +59,8 @@ const Routes = ({navigation}) => {
         tabBarIcon: ({color}) => (
           <Image
             // style={styles.bottomTabIcon}
-            source={require('../assets/Home.png')}
+            style={{height:28,width:30}}
+            source={require('../assets/download.png')}
           />
         ),
         tabBarLabel: `History`,

@@ -1,10 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View, Pressable ,TextInput,Alert} from 'react-native';
-import ScreenWrapper from './ScreenWrapper';
+import { StyleSheet, Text, View} from 'react-native';
 
 const Header = (props) => {
   return (
-
           <View style={styles.commonheader}>
         <Text style={styles.headertext}> {props.text} </Text>
       </View>
@@ -22,8 +20,8 @@ const styles = StyleSheet.create({
       },
       headertext:{
         fontFamily: 'Quicksand',
-        fontStyle: "normal",
-        fontWeight: 700,
+        // fontStyle: "normal",
+        fontWeight: "700",
         fontSize: 18,
       margin:8,
       marginTop:18,

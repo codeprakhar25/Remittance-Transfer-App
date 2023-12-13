@@ -52,7 +52,7 @@ import {
             invalidatesTags: ['Transfers'],
           }),
           getTransferbyUserId: builder.query({
-            query: (id) => `/Transfers/?user_id=${id}`,  
+            query: (id) => `/Transfers/?user_id=${id}&order_by=createdAt`,  
             
           }),
     })

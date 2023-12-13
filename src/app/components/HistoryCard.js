@@ -12,8 +12,8 @@ const HistoryCard = ({transfer}) => {
        <Text style={styles.text}>Sent to: {transfer.to}</Text>
       </View>
       <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',}}>
-       <Text style={styles.text}>Sent Amount: {transfer.sent_amount}</Text>
-       <Text style={styles.text}>Received Amount: {transfer.received_amount}</Text>
+       <Text style={styles.text}>Sent Amt.: {parseFloat(transfer.sent_amount).toFixed(2)}</Text>
+       <Text style={styles.text}>Received Amt.: {parseFloat(transfer.received_amount).toFixed(2)}</Text>
       </View>
 
        <Text style={styles.text}>Transfer Date: {transfer.createdAt?.split('T')[0]}</Text>
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: 'white',
     padding: 16,
-    margin: 8,
+    width:'90%',
+    marginLeft:'5%',
     marginTop:15,
     borderRadius: 8,
     elevation: 3,
