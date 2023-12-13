@@ -6,7 +6,7 @@ import {
 
   export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({baseUrl: 'https://654b68155b38a59f28ef05c2.mockapi.io/scopex/api'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'https://6578550ef08799dc8044f2a7.mockapi.io/api'}),
     tagTypes: [
       'Transfers',
       'Users'
@@ -28,10 +28,11 @@ import {
         }),
         addTransfer:builder.mutation({
    query:initialPost=>({
-    url:'/Transfers/',
+     url:'/Transfers/',
+        method: 'POST',
     body:initialPost
    }),
-   providesTags:"Transfers",
+  //  providesTags:"Transfers",
         }),
         getTransfer: builder.query({
             query:()=> '/Transfers/'

@@ -48,13 +48,8 @@ navigation.navigate("Routes");
           console.error('Google Sign-In Error:', error);
         }
       };
-  
-     const id="116802752130870783622";
-      const { data:transfers, error,isSuccess, isLoading } = useGetTransferbyUserIdQuery(id);
-      if(isSuccess){
-        console.log(transfers);
 
-      } 
+     
   return (
     <View style={{backgroundColor:'#ffffff',alignItems:'center',height:'70%',marginTop:'28%',display:'flex',justifyContent:'center',}}>
       <Image

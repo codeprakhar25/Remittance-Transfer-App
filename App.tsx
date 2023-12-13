@@ -33,7 +33,7 @@ function App(): React.JSX.Element {
       <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Routes" component={Routes} />
         <Stack.Screen name="transfer" component={TransferForm} />
-        <Stack.Screen name="hom" component={Home} />
+        {/* <Stack.Screen name="hom" component={Home} /> */}
       </Stack.Navigator>
     </NavigationContainer>
 
