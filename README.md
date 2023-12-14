@@ -1,8 +1,22 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# Setting-Up Project
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Clone the Project
+First, you will need to clone the project by following the command:
+```bash
+git clone https://github.com/codeprakhar25/Remittance-Transfer-App.git
+```
+
+Then run the command to install all dependencies:
+```bash
+cd Remittance-Transfer-App
+npm i
+```
+
+# Starting the application
+
+>**Note**: IMPORTANT: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) and [Android Studio - Setup](https://developer.android.com/studio)  Setup instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
 
@@ -42,38 +56,45 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly, provided you have set up your emulator/simulator correctly.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+This is one way to run your app — you can also run it directly from within Android Studio and Xcode, respectively.
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
 ## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
+You've successfully run your React Native App. :partying_face:
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
+## Troubleshooting
 
 If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-# Learn More
+# Authentication flow and API integration
 
-To learn more about React Native, take a look at the following resources:
+I utilized Google APIs(without Firebase) for Google authentication and the react-native-google-signin library to integrate it into the application.
+Used @reduxjs/toolkit library for state management @reduxjs/toolkit/query/react for data fetching in the application. These provide hooks(like ) that are part of the overall Query API provided by Redux Toolkit. They abstract away much of the boilerplate code associated with data fetching and state management, making it easier to integrate data fetching into your React components while keeping the application state in sync with the data from your API.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# Design Decisions
+
+I researched existing Remittance Transfer Applications, focusing primarily on Remitly. Based on my findings, I decided to structure the application's UI into three main sections: Home, History, and Profile. Additionally, there is a login screen at the start of the application. On the Home screen, I incorporated a 'Transfer Money' button, which, when clicked, opens a new screen for users to fill in the necessary details.
+
+## Libraries Used
+
+    "@react-native-async-storage/async-storage
+    "@react-native-community/masked-view
+    "@react-native-material/core"
+    "@react-native-picker/picker"
+    "@react-navigation/bottom-tabs"
+    "@react-navigation/native"
+    "@react-navigation/native-stack"
+    "@react-navigation/stack"
+    "@reduxjs/toolkit"
+    "react"
+    "react-native"
+    "react-native-gesture-handler"
+    "react-native-google-signin"
+    "react-native-safe-area-context"
+    "react-native-screens"
+    "react-navigation-stack"
+    "react-redux"
